@@ -1,22 +1,57 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+struct Card {
+    char city[25];
+    int population;
+    float area;
+    float PIB;
+    int tourist;
+};
 
-int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+struct State {
+    char name[20];
+    struct Card card[4];
+};
 
-    return 0;
+struct Country {
+    char name[20];
+    struct State state[8];
+};
+
+int main(void)
+{
+    struct Country country;
+
+    printf("Enter country name: ");
+    scanf("%s", country.name);
+
+    for (int i = 0; i < 8; i++) {
+        printf("Enter country state[%d]: ", i + 1);
+        scanf("%s", country.state[i].name);
+
+        for (int j = 0; j < 4; j++) {
+            printf("Enter city: ");
+            scanf("%s", country.state[i].card[j].city);
+            printf("Enter population: ");
+            scanf("%d", &country.state[i].card[j].population);
+            printf("Enter area: ");
+            scanf("%f", &country.state[i].card[j].area);
+            printf("Enter PIB: ");
+            scanf("%f", &country.state[i].card[j].PIB);
+            printf("Enter tourist: ");
+            scanf("%d", &country.state[i].card[j].tourist);
+        }
+    }
+
+    for (int i = 0; i < 8; i++) {
+        printf("%s\n", country.state[i].name);
+        for (int j = 0; j < 4; j++) {
+            printf("%s ", country.state[i].name);
+            printf("%s ", country.state[i].card[j].city);
+            printf("%d ", country.state[i].card[j].population);
+            printf("%f ", country.state[i].card[j].area);
+            printf("%f ", country.state[i].card[j].PIB);
+            printf("%d ", country.state[i].card[j].tourist);
+        }
+    }
 }
